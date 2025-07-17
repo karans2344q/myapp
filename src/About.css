@@ -1,0 +1,81 @@
+.about-page {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  padding: 30px 20px;
+  background: linear-gradient(to right, #fef9ff, #e0f7ff);
+  min-height: 100vh;
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.about-title {
+  font-size: 3rem;
+  background: linear-gradient(to right, navy);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+.about-section {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 900px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.team-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #4a148c;
+  margin: 40px 0 20px;
+}
+
+.team-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  padding: 20px 25px;
+  border-radius: 15px;
+  text-align: center;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+}
+
+.team-card h3 {
+  margin-bottom: 10px;
+  color: #3c096c;
+}
+
+.team-card p {
+  color: #333;
+  font-weight: 500;
+}
+
+.about-footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}

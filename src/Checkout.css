@@ -1,0 +1,35 @@
+.checkout-container {
+  max-width: 600px;
+  margin: auto;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.place-order-btn {
+  background: #28a745;
+  border: none;
+  padding: 12px 24px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.place-order-btn:hover {
+  background: #218838;
+}
