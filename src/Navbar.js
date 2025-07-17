@@ -279,7 +279,7 @@ function Navbar({ username, setUsername }) {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 16px !important;
+  padding: 8px 20px 8px 16px !important;
   border-radius: 20px;
   color: #fff !important;
   transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
@@ -304,13 +304,14 @@ function Navbar({ username, setUsername }) {
   position: absolute;
   top: 4px;
   right: 4px;
+  bottom: 8px;
   background: linear-gradient(135deg, #ff6b6b, #e74c3c);
   color: white;
   font-size: 11px;
   font-weight: bold;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: flex;
   align-items: center;
   justify-content: center;

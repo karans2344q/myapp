@@ -3,10 +3,22 @@
   padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  background: linear-gradient(135deg, #9adef6, #f9f6ff);
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+/* Heading */
+.men-section h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #ff6b6b, #7c43bd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+  text-align: center;
+  animation: fadeIn 1s ease;
 }
 
 /* Section Header */
