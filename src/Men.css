@@ -15,6 +15,7 @@
   font-weight: 800;
   background: linear-gradient(to right, #ff6b6b, #7c43bd);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 40px;
   text-align: center;
@@ -32,6 +33,7 @@
   font-weight: 800;
   background: linear-gradient(to right, #7c43bd, #ff6b6b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fadeIn 1s ease;
 }
@@ -88,6 +90,7 @@
 /* Card Styling */
 .men-card {
   background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 18px;
   overflow: hidden;

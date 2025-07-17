@@ -14,8 +14,8 @@
   font-size: 3rem;
   font-weight: 800;
   background: linear-gradient(to right, #ff6b6b, #7c43bd);
-  background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 40px;
   text-align: center;
@@ -33,6 +33,7 @@
   font-weight: 800;
   background: linear-gradient(to right, #1e3c72, #2a5298);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   animation: fadeIn 1s ease;
@@ -104,6 +105,7 @@
 /* Card */
 .kids-card {
   background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 18px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
