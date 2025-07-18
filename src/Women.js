@@ -11,18 +11,15 @@ function Women() {
   const [selectedPrice, setSelectedPrice] = useState('all');
 
   useEffect(() => {
-    // Fetch products from Firebase Firestore
     const fetchProducts = async () => {
       const productRef = collection(db, 'womenProducts');
       const snapshot = await getDocs(productRef);
-      const productList = snapshot.docs.map(doc => doc.data());
+      const productList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProducts(productList);
     };
-
     fetchProducts();
   }, []);
 
-  // Fetch ratings for each product
   useEffect(() => {
     const unsubscribes = products.map((product) => {
       const docRef = doc(db, 'ratings', product.name);
@@ -32,15 +29,13 @@ function Women() {
           const avg = ratingsArray.length
             ? ratingsArray.reduce((sum, r) => sum + (r.rating || 0), 0) / ratingsArray.length
             : 0;
-          const avgRating = avg.toFixed(1);
-          setRatingsMap((prev) => ({ ...prev, [product.name]: avgRating }));
+          setRatingsMap((prev) => ({ ...prev, [product.name]: avg.toFixed(1) }));
         } else {
           setRatingsMap((prev) => ({ ...prev, [product.name]: "0.0" }));
         }
       });
     });
-
-    return () => unsubscribes.forEach((unsub) => unsub());
+    return () => unsubscribes.forEach(unsub => unsub());
   }, [products]);
 
   const renderStars = (rating) => {
@@ -51,12 +46,12 @@ function Women() {
   };
 
   const filterByPrice = (product) => {
-    const price = parseInt(product.price.replace('₹', ''));
+    const numericPrice = parseFloat((product.price || "0").toString().replace(/[^\d.]/g, '')) || 0;
     switch (selectedPrice) {
-      case 'below500': return price < 500;
-      case '500to1000': return price >= 500 && price <= 1000;
-      case '1000to2000': return price > 1000 && price <= 2000;
-      case 'above2000': return price > 2000;
+      case 'below500': return numericPrice < 500;
+      case '500to1000': return numericPrice >= 500 && numericPrice <= 1000;
+      case '1000to2000': return numericPrice > 1000 && numericPrice <= 2000;
+      case 'above2000': return numericPrice > 2000;
       default: return true;
     }
   };
@@ -82,14 +77,13 @@ function Women() {
           <option value="above2000">Above ₹2000</option>
         </select>
       </div>
-
       <div className="women-gallery">
         {filteredProducts.map((item, idx) => (
           <div className="women-card" key={idx} onClick={() => goToDetails(item, idx)}>
             <img src={item.img} alt={item.name} className="women-img" />
             <div className="women-details">
               <h3>{item.name}</h3>
-              <p className="women-price">{item.price}</p>
+              <p className="women-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
               <p className="rating-line">
                 ⭐ {renderStars(Number(ratingsMap[item.name] || 0))} ({ratingsMap[item.name] || "0.0"})
               </p>
@@ -103,3 +97,6 @@ function Women() {
 }
 
 export default Women;
+
+
+// Similar logic can be copied for Kids.jsx with collection(db, 'kidsProducts') and CSS classNames replaced by "kids-section", "kids-gallery", etc.

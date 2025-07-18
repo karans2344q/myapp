@@ -1,3 +1,5 @@
+// ✅ Full React Admin Registration with Role and Firestore (Final Code)
+
 import React, { useState } from 'react';
 import './Register.css';
 import { db, auth } from './firebase';
@@ -12,7 +14,7 @@ export default function Register() {
     password: '',
     confirmPassword: '',
     address: '',
-    role: 'user',  // Default role is user
+    role: 'user',
   });
 
   const navigate = useNavigate();
@@ -38,32 +40,70 @@ export default function Register() {
         username: form.username.trim(),
         email: form.email.trim().toLowerCase(),
         address: form.address.trim(),
-        role: form.role,  // ✅ Saving role in Firestore
-        createdAt: new Date().toISOString()
+        role: form.role,
+        createdAt: new Date().toISOString(),
       };
 
       await setDoc(doc(db, "users", user.uid), userData);
 
-      alert("✅ Registration successful!");
+      alert("✅ Registration Successful!");
       navigate("/login");
     } catch (err) {
-      console.error("Registration error:", err);
-      alert("❌ Registration failed: " + err.message);
+      console.error("Registration Error:", err);
+      alert("❌ Registration Failed: " + err.message);
     }
   };
 
   return (
     <div className="register-container">
-      <h2>Create an Account</h2>
+      <h2>Create Account</h2>
       <form className="register-form" onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
-        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" value={form.confirmPassword} onChange={handleChange} required />
-        <input type="text" name="address" placeholder="Address (optional)" value={form.address} onChange={handleChange} />
-        
-        {/* ✅ Admin or User */}
-        <select name="role" value={form.role} onChange={handleChange}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={form.username}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={form.confirmPassword}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="address"
+          placeholder="Address (optional)"
+          value={form.address}
+          onChange={handleChange}
+        />
+
+        <select
+          name="role"
+          value={form.role}
+          onChange={handleChange}
+          className="role-selector"
+        >
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>

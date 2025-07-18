@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-
 import { auth, db } from './firebase';
 
 // Components
@@ -25,59 +24,39 @@ import Cart from './Cart';
 import Checkout from './Checkout';
 import Order from './Order';
 import ProductDetail from './ProductDetail';
-import UploadAllProducts from './UploadAllProducts'; 
+import UploadAllProducts from './UploadAllProducts';
+
+// Admin
+import AdminDashboard from './Admin/AdminDashboard';
 
 function App() {
-  const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    createdAt: '',
-    address: ''
-  });
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         try {
-          const docRef = doc(db, 'users', user.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            setUserData({
-              username: data.username || '',
-              email: data.email || '',
-              createdAt: data.createdAt || '',
-              address: data.address || ''
-            });
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (userDoc.exists()) {
+            const data = userDoc.data();
+            localStorage.setItem("userData", JSON.stringify(data));
+            setUserData(data);
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
       } else {
-        setUserData({
-          username: '',
-          email: '',
-          createdAt: '',
-          address: ''
-        });
+        localStorage.removeItem("userData");
+        setUserData(null);
       }
     });
-
     return () => unsubscribe();
   }, []);
 
   return (
     <CartProvider>
       <Header />
-      <Navbar 
-        username={userData.username}
-        setUsername={() => setUserData({
-          username: '',
-          email: '',
-          createdAt: '',
-          address: ''
-        })}
-      />
+      <Navbar userData={userData} setUserData={setUserData} />
       <div style={{ padding: '20px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -94,7 +73,8 @@ function App() {
           <Route path="/checkout" element={<Checkout userData={userData} />} />
           <Route path="/order" element={<Order />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/upload-all" element={<UploadAllProducts />} /> {/* ✅ ADD किया */}
+          <Route path="/upload-all" element={<UploadAllProducts />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
       <Footer />
