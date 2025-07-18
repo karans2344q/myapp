@@ -71,11 +71,14 @@
 /* Header */
 .header-container {
   position: relative;
-  background: linear-gradient(145deg, #0f0f23, #1a1a3a);
-  padding: 4rem 0;
-  color: var(--light);
+  background: linear-gradient(135deg, #4e342e 0%, #6d4c41 50%, #d7ccc8 100%);
+  color: white;
   overflow: hidden;
+  padding: 60px 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
+
 
 .header-gradient-overlay, .header-glow, .particle-layer {
   position: absolute;
