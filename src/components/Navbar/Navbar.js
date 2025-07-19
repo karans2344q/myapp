@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useCart } from './CartContext';
-import { auth } from './firebase';
+import { useCart } from '../../context/CartContext';
+import { auth } from '../../firebase/firebase';
 
 function Navbar() {
   const { cartCount, setCartItems } = useCart();

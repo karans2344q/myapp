@@ -1,6 +1,6 @@
 import React from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from './firebase/firebase';
 
 function UploadAllProducts() {
   const menProducts = [

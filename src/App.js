@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { auth, db } from './firebase';
+import { auth, db } from './firebase/firebase';
 
 // Components
-import Header from './Headers';
-import Navbar from './Navbar';
-import Footer from './Footers';
-import { CartProvider } from './CartContext';
+
+import Navbar from './components/Navbar/Navbar';  
+import Footer from './components/Footer/Footers';
+import { CartProvider } from './context/CartContext';  
 
 // Pages
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
-import LoginPage from './Login';
-import Register from './Register';
-import Profile from './Profile';
-import Men from './Men';
-import Women from './Women';
-import Kids from './Kids';
-import Cart from './Cart';
-import Checkout from './Checkout';
-import Order from './Order';
-import ProductDetail from './ProductDetail';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Contact from './pages/Contact/Contact';
+import LoginPage from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import Profile from './pages/Profile/Profile';
+import Men from './pages/Men/Men';
+import Women from './pages/Women/Women';
+import Kids from './pages/Kids/Kids';
+import Cart from './components/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout';
+import Order from './pages/Orders/Order';
+import ProductDetail from './components/Product/ProductDetail';
 import UploadAllProducts from './UploadAllProducts';
 
 // Admin
-import AdminDashboard from './Admin/AdminDashboard';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <CartProvider>
-      <Header />
+      
       <Navbar userData={userData} setUserData={setUserData} />
       <div style={{ padding: '20px' }}>
         <Routes>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCart } from './CartContext';
+import { useCart } from '../../context/CartContext';
+import { db, auth } from '../../firebase/firebase';
+
 import { FiShoppingCart, FiArrowLeft, FiTruck, FiStar } from 'react-icons/fi';
 import './ProductDetail.css';
-import { db, auth } from './firebase';
+
 import { doc, onSnapshot, setDoc, arrayUnion } from 'firebase/firestore';
 
 function ProductDetail() {

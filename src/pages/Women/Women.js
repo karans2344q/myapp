@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from './firebase';
+import { db } from '../../firebase/firebase';
 import { collection, getDocs, doc, onSnapshot } from 'firebase/firestore';
-import './Kids.css';
+import './Women.css';
 
-function Kids() {
+function Women() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [ratingsMap, setRatingsMap] = useState({});
@@ -12,7 +12,7 @@ function Kids() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productRef = collection(db, 'kidsProducts');
+      const productRef = collection(db, 'womenProducts');
       const snapshot = await getDocs(productRef);
       const productList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProducts(productList);
@@ -58,15 +58,15 @@ function Kids() {
 
   const goToDetails = (product, index) => {
     navigate(`/product/${index}`, {
-      state: { product, category: 'kids' }
+      state: { product, category: 'women' }
     });
   };
 
   const filteredProducts = products.filter(filterByPrice);
 
   return (
-    <div className="kids-section">
-      <h1>Kids' Collection</h1>
+    <div className="women-section">
+      <h1>Women's Collection</h1>
       <div className="filter-container">
         <label>Filter by Price:</label>
         <select value={selectedPrice} onChange={(e) => setSelectedPrice(e.target.value)}>
@@ -77,13 +77,13 @@ function Kids() {
           <option value="above2000">Above ₹2000</option>
         </select>
       </div>
-      <div className="kids-gallery">
+      <div className="women-gallery">
         {filteredProducts.map((item, idx) => (
-          <div className="kids-card" key={idx} onClick={() => goToDetails(item, idx)}>
-            <img src={item.img} alt={item.name} className="kids-img" />
-            <div className="kids-details">
+          <div className="women-card" key={idx} onClick={() => goToDetails(item, idx)}>
+            <img src={item.img} alt={item.name} className="women-img" />
+            <div className="women-details">
               <h3>{item.name}</h3>
-              <p className="kids-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
+              <p className="women-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
               <p className="rating-line">
                 ⭐ {renderStars(Number(ratingsMap[item.name] || 0))} ({ratingsMap[item.name] || "0.0"})
               </p>
@@ -96,4 +96,7 @@ function Kids() {
   );
 }
 
-export default Kids;
+export default Women;
+
+
+// Similar logic can be copied for Kids.jsx with collection(db, 'kidsProducts') and CSS classNames replaced by "kids-section", "kids-gallery", etc.

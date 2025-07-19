@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import './Register.css';
-import { db, auth } from './firebase';
+import { db, auth } from '../../firebase/firebase';
+
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ export default function Register() {
     password: '',
     confirmPassword: '',
     address: '',
-    role: 'user',
+    role: '',
   });
 
   const navigate = useNavigate();
@@ -98,15 +99,16 @@ export default function Register() {
           onChange={handleChange}
         />
 
-        <select
-          name="role"
-          value={form.role}
-          onChange={handleChange}
-          className="role-selector"
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
+       <select
+  name="role"
+  value={form.role}
+  onChange={handleChange}
+  className="role-selector"
+>
+  <option value="" disabled selected>Select Role</option>
+  <option value="user">User</option>
+  <option value="admin">Admin</option>
+</select>
 
         <button type="submit">Register</button>
       </form>

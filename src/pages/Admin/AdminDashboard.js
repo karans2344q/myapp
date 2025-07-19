@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase';
+import { db } from '../../firebase/firebase';
 import { collection, addDoc, getDocs, deleteDoc, doc, Timestamp } from 'firebase/firestore';
 import { FiPlus, FiList, FiTrash2, FiChevronRight } from 'react-icons/fi';
 import './AdminDashboard.css';
