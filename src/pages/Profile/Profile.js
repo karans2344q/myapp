@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { auth, db } from './firebase';
+import { db, auth } from '../../firebase/firebase';
+
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { FiUser, FiMail, FiHome, FiCalendar, FiEdit, FiSave } from 'react-icons/fi';
 import './Profile.css';

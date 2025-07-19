@@ -7,7 +7,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
-import { useCart } from './CartContext';
+import { useCart } from '../../context/CartContext';
+
 
 const Home = () => {
   const navigate = useNavigate();

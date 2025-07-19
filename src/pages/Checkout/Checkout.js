@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { auth, db } from "./firebase";
+
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
-import { useCart } from "./CartContext";
+import { useCart } from '../../context/CartContext';
+import { db, auth } from '../../firebase/firebase';
+
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Checkout.css";
 

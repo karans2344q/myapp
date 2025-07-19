@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from './firebase';
+import { db } from '../../firebase/firebase';
 import { collection, getDocs, doc, onSnapshot } from 'firebase/firestore';
-import './Men.css';
+import './Kids.css';
 
-function Men() {
+function Kids() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [ratingsMap, setRatingsMap] = useState({});
@@ -12,7 +12,7 @@ function Men() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productRef = collection(db, 'menProducts');
+      const productRef = collection(db, 'kidsProducts');
       const snapshot = await getDocs(productRef);
       const productList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProducts(productList);
@@ -58,15 +58,15 @@ function Men() {
 
   const goToDetails = (product, index) => {
     navigate(`/product/${index}`, {
-      state: { product, category: 'men' }
+      state: { product, category: 'kids' }
     });
   };
 
   const filteredProducts = products.filter(filterByPrice);
 
   return (
-    <div className="men-section">
-      <h1>Men's Collection</h1>
+    <div className="kids-section">
+      <h1>Kids' Collection</h1>
       <div className="filter-container">
         <label>Filter by Price:</label>
         <select value={selectedPrice} onChange={(e) => setSelectedPrice(e.target.value)}>
@@ -77,13 +77,13 @@ function Men() {
           <option value="above2000">Above ₹2000</option>
         </select>
       </div>
-      <div className="men-gallery">
+      <div className="kids-gallery">
         {filteredProducts.map((item, idx) => (
-          <div className="men-card" key={idx} onClick={() => goToDetails(item, idx)}>
-            <img src={item.img} alt={item.name} className="men-img" />
-            <div className="men-details">
+          <div className="kids-card" key={idx} onClick={() => goToDetails(item, idx)}>
+            <img src={item.img} alt={item.name} className="kids-img" />
+            <div className="kids-details">
               <h3>{item.name}</h3>
-              <p className="men-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
+              <p className="kids-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
               <p className="rating-line">
                 ⭐ {renderStars(Number(ratingsMap[item.name] || 0))} ({ratingsMap[item.name] || "0.0"})
               </p>
@@ -96,4 +96,4 @@ function Men() {
   );
 }
 
-export default Men;
+export default Kids;
