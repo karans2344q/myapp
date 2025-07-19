@@ -1,46 +1,122 @@
+/* ✅ LoginPage.css (Simple and Clean Login Styling) */
 .login-container {
-  max-width: 350px;
+  max-width: 400px;
   margin: 80px auto;
-  padding: 32px 24px;
+  padding: 25px;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
 }
-
 .login-container h2 {
-  margin-bottom: 24px;
-  color: #4a148c;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
-
 .login-container input {
-  width: 90%;
-  padding: 10px 12px;
+  width: 100%;
+  padding: 12px;
   margin: 10px 0;
-  border: 1.5px solid #b39ddb;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
   outline: none;
-  transition: border 0.2s;
+  font-size: 15px;
+  transition: 0.3s;
 }
-
 .login-container input:focus {
-  border: 1.5px solid #7c43bd;
+  border-color: #7c43bd;
+  box-shadow: 0 0 5px #7c43bd;
 }
-
 .login-container button {
   width: 100%;
-  padding: 10px;
+  background-color: #7c43bd;
+  color: #fff;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.login-container button:hover {
+  background-color: #5a2c9d;
+}
+
+/* ✅ AdminDashboard.css */
+.admin-dashboard {
+  max-width: 1000px;
+  margin: 40px auto;
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.admin-dashboard h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #444;
+}
+.admin-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.admin-actions a {
+  background-color: #7c43bd;
+  color: #fff;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+.admin-actions a:hover {
+  background-color: #5a2c9d;
+}
+
+/* ✅ AddProduct.css */
+.admin-form {
+  max-width: 500px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
+}
+.admin-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.admin-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+.admin-form input:focus {
+  border-color: #7c43bd;
+}
+.admin-form button {
+  width: 100%;
+  padding: 12px;
   background: #7c43bd;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 17px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 15px;
   cursor: pointer;
-  margin-top: 12px;
-  transition: background 0.2s;
+  transition: 0.3s;
 }
-
-.login-container button:hover {
-  background: #4a148c;
+.admin-form button:hover {
+  background: #5a2c9d;
 }

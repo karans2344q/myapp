@@ -12,13 +12,13 @@ const LoginPage = ({ setUserData }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!email || !password) return alert("Please fill in all fields.");
+
+    if (!email || !password) return alert("⚠️ Please fill in all fields");
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // ✅ Firestore se user details lena
       const userDocRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userDocRef);
 
@@ -26,16 +26,41 @@ const LoginPage = ({ setUserData }) => {
         const userData = userSnap.data();
         localStorage.setItem("userData", JSON.stringify(userData));
         setUserData(userData);
-        alert("✅ Login Successful!");
-        navigate("/");
+
+        // ✅ Pop-up show karo bina OK ke (auto dismiss after few seconds)
+        const alertBox = document.createElement('div');
+        alertBox.innerText = "✅ Login Successful!";
+        alertBox.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #4BB543;
+          color: white;
+          padding: 15px 25px;
+          border-radius: 8px;
+          font-weight: bold;
+          box-shadow: 0 0 10px rgba(0,0,0,0.2);
+          z-index: 9999;
+        `;
+        document.body.appendChild(alertBox);
+
+        setTimeout(() => {
+          document.body.removeChild(alertBox);
+
+          // ✅ Role ke according navigate
+          if (userData.role === "admin") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/");
+          }
+        }, 1500); // Alert 1.5 seconds ke baad automatic redirect
       } else {
         alert("❌ User data not found!");
       }
 
     } catch (error) {
-      if (error.code === "auth/user-not-found") alert("No user found with this email.");
-      else if (error.code === "auth/wrong-password") alert("Incorrect password.");
-      else alert("❌ Login failed: " + error.message);
+      console.error("Login Error:", error);
+      alert("❌ Login failed: " + error.message);
     }
   };
 
@@ -43,16 +68,23 @@ const LoginPage = ({ setUserData }) => {
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email}
-          onChange={(e) => setEmail(e.target.value)} required /><br />
-        <input type="password" placeholder="Password" value={password}
-          onChange={(e) => setPassword(e.target.value)} required /><br />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required />
         <button type="submit">Login</button>
       </form>
-
-      <div style={{ marginTop: '18px' }}>
+      <div style={{ marginTop: '15px' }}>
         <span>Not registered? </span>
-        <a href="/register" style={{ color: '#7c43bd', fontWeight: 'bold' }}>Register here</a>
+        <a href="/register" style={{ color: '#7c43bd' }}>Register here</a>
       </div>
     </div>
   );

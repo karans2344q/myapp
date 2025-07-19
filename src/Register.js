@@ -1,3 +1,5 @@
+// ✅ Full React Admin Registration with Role and Firestore (Final Code)
+
 import React, { useState } from 'react';
 import './Register.css';
 import { db, auth } from './firebase';
@@ -11,7 +13,8 @@ export default function Register() {
     email: '',
     password: '',
     confirmPassword: '',
-    address: ''
+    address: '',
+    role: 'user',
   });
 
   const navigate = useNavigate();
@@ -37,25 +40,23 @@ export default function Register() {
         username: form.username.trim(),
         email: form.email.trim().toLowerCase(),
         address: form.address.trim(),
-        createdAt: new Date().toISOString()
+        role: form.role,
+        createdAt: new Date().toISOString(),
       };
 
       await setDoc(doc(db, "users", user.uid), userData);
 
-      // ✅ Optional: Save user to localStorage
-      localStorage.setItem("userData", JSON.stringify(userData));
-
-      alert("✅ Registration successful!");
+      alert("✅ Registration Successful!");
       navigate("/login");
     } catch (err) {
-      console.error("Registration error:", err);
-      alert("❌ Registration failed: " + err.message);
+      console.error("Registration Error:", err);
+      alert("❌ Registration Failed: " + err.message);
     }
   };
 
   return (
     <div className="register-container">
-      <h2>Create an Account</h2>
+      <h2>Create Account</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -96,6 +97,17 @@ export default function Register() {
           value={form.address}
           onChange={handleChange}
         />
+
+        <select
+          name="role"
+          value={form.role}
+          onChange={handleChange}
+          className="role-selector"
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+
         <button type="submit">Register</button>
       </form>
     </div>

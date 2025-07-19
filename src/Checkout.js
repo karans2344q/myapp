@@ -52,8 +52,8 @@ const Checkout = () => {
     const itemsToOrder = buyNowItem
       ? [buyNowItem]
       : cartItems.length > 0
-        ? cartItems
-        : [];
+      ? cartItems
+      : [];
 
     if (itemsToOrder.length === 0) {
       alert("Cart is empty or no item to checkout!");
@@ -70,14 +70,17 @@ const Checkout = () => {
         email: userInfo?.email || "",
         address,
         paymentMethod,
-        items: itemsToOrder.map(item => ({
+        items: itemsToOrder.map((item) => ({
           name: item.name,
           price: item.price,
           quantity: item.quantity,
           image: item.img || item.image || "",
         })),
         totalItems: itemsToOrder.reduce((sum, item) => sum + item.quantity, 0),
-        totalPrice: itemsToOrder.reduce((sum, item) => sum + item.price * item.quantity, 0),
+        totalPrice: itemsToOrder.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        ),
         orderedAt: new Date().toISOString(),
       };
 
@@ -92,11 +95,19 @@ const Checkout = () => {
   };
 
   if (loading) {
-    return <p style={{ textAlign: "center", marginTop: "40px" }}>Loading user details...</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "40px" }}>
+        Loading user details...
+      </p>
+    );
   }
 
   if (!auth.currentUser) {
-    return <p style={{ textAlign: "center", marginTop: "40px" }}>Please login to view checkout.</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "40px" }}>
+        Please login to view checkout.
+      </p>
+    );
   }
 
   const orderItems = buyNowItem ? [buyNowItem] : cartItems;
@@ -107,11 +118,16 @@ const Checkout = () => {
 
       {userInfo && (
         <>
-          <p><strong>Logged in as:</strong> {userInfo.username}</p>
-          <p><strong>Email:</strong> {userInfo.email}</p>
+          <p>
+            <strong>Logged in as:</strong> {userInfo.username}
+          </p>
+          <p>
+            <strong>Email:</strong> {userInfo.email}
+          </p>
 
           <div className="form-group">
-            <label>Address:</label><br />
+            <label>Address:</label>
+            <br />
             <textarea
               rows={4}
               value={address}
@@ -122,8 +138,12 @@ const Checkout = () => {
           </div>
 
           <div className="form-group">
-            <label>Payment Method:</label><br />
-            <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
+            <label>Payment Method:</label>
+            <br />
+            <select
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            >
               <option>Cash on Delivery</option>
               <option>UPI</option>
               <option>Credit Card</option>
@@ -132,12 +152,21 @@ const Checkout = () => {
           </div>
 
           <div className="order-summary">
-            <p><strong>Total Items:</strong> {orderItems.reduce((sum, item) => sum + item.quantity, 0)}</p>
-            <p><strong>Total Price:</strong> ₹{orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0)}</p>
+            <p>
+              <strong>Total Items:</strong>{" "}
+              {orderItems.reduce((sum, item) => sum + item.quantity, 0)}
+            </p>
+            <p>
+              <strong>Total Price:</strong> ₹
+              {orderItems.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+              )}
+            </p>
           </div>
 
           <button onClick={handlePlaceOrder} className="place-order-btn">
-            🛒 Place Order
+            <span>🛒 Place Order</span>
           </button>
         </>
       )}

@@ -10,18 +10,16 @@ function Kids() {
   const [ratingsMap, setRatingsMap] = useState({});
   const [selectedPrice, setSelectedPrice] = useState('all');
 
-  // ✅ Kids products Firebase से fetch
   useEffect(() => {
     const fetchProducts = async () => {
       const productRef = collection(db, 'kidsProducts');
       const snapshot = await getDocs(productRef);
-      const productList = snapshot.docs.map(doc => doc.data());
+      const productList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setProducts(productList);
     };
     fetchProducts();
   }, []);
 
-  // ✅ Ratings Firebase से realtime update
   useEffect(() => {
     const unsubscribes = products.map((product) => {
       const docRef = doc(db, 'ratings', product.name);
@@ -31,14 +29,13 @@ function Kids() {
           const avg = ratingsArray.length
             ? ratingsArray.reduce((sum, r) => sum + (r.rating || 0), 0) / ratingsArray.length
             : 0;
-          const avgRating = avg.toFixed(1);
-          setRatingsMap((prev) => ({ ...prev, [product.name]: avgRating }));
+          setRatingsMap((prev) => ({ ...prev, [product.name]: avg.toFixed(1) }));
         } else {
           setRatingsMap((prev) => ({ ...prev, [product.name]: "0.0" }));
         }
       });
     });
-    return () => unsubscribes.forEach((unsub) => unsub());
+    return () => unsubscribes.forEach(unsub => unsub());
   }, [products]);
 
   const renderStars = (rating) => {
@@ -49,12 +46,12 @@ function Kids() {
   };
 
   const filterByPrice = (product) => {
-    const price = parseInt(product.price.replace('₹', ''));
+    const numericPrice = parseFloat((product.price || "0").toString().replace(/[^\d.]/g, '')) || 0;
     switch (selectedPrice) {
-      case 'below500': return price < 500;
-      case '500to1000': return price >= 500 && price <= 1000;
-      case '1000to2000': return price > 1000 && price <= 2000;
-      case 'above2000': return price > 2000;
+      case 'below500': return numericPrice < 500;
+      case '500to1000': return numericPrice >= 500 && numericPrice <= 1000;
+      case '1000to2000': return numericPrice > 1000 && numericPrice <= 2000;
+      case 'above2000': return numericPrice > 2000;
       default: return true;
     }
   };
@@ -69,7 +66,7 @@ function Kids() {
 
   return (
     <div className="kids-section">
-      <h1>Kids Wonderland</h1>
+      <h1>Kids' Collection</h1>
       <div className="filter-container">
         <label>Filter by Price:</label>
         <select value={selectedPrice} onChange={(e) => setSelectedPrice(e.target.value)}>
@@ -80,14 +77,13 @@ function Kids() {
           <option value="above2000">Above ₹2000</option>
         </select>
       </div>
-
       <div className="kids-gallery">
         {filteredProducts.map((item, idx) => (
           <div className="kids-card" key={idx} onClick={() => goToDetails(item, idx)}>
             <img src={item.img} alt={item.name} className="kids-img" />
             <div className="kids-details">
               <h3>{item.name}</h3>
-              <p>{item.price}</p>
+              <p className="kids-price">₹{parseFloat((item.price || "0").toString().replace(/[^\d.]/g, ''))}</p>
               <p className="rating-line">
                 ⭐ {renderStars(Number(ratingsMap[item.name] || 0))} ({ratingsMap[item.name] || "0.0"})
               </p>

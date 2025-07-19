@@ -442,14 +442,14 @@
 .price {
   font-size: 1.3rem;
   font-weight: 800;
-  color: var(--primary);
+  color: #3aa655 !important;
   margin-bottom: 15px;
 }
 
 .add-to-cart-btn {
   width: 100%;
   padding: 14px;
-  background: var(--dark);
+  background: linear-gradient(to right, #1e3c72, #2a5298) !important;
   color: var(--lighter);
   border: none;
   border-radius: 8px;
@@ -462,7 +462,7 @@
 }
 
 .add-to-cart-btn:hover {
-  background: var(--darker);
+  background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
   transform: translateY(-2px);
 }
 
