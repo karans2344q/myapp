@@ -12,7 +12,7 @@ import { CartProvider } from './context/CartContext';
 
 // Pages
 import Home from './pages/Home/Home';
-import About from './pages/About/About';
+import About from './pages/About';
 import Contact from './pages/Contact/Contact';
 import LoginPage from './pages/Login/Login';
 import Register from './pages/Register/Register';

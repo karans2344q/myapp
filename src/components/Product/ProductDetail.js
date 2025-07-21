@@ -71,6 +71,10 @@ function ProductDetail() {
   };
 
   const handleAddToCart = () => {
+    if (!isLoggedIn) {
+      alert("Please login to add product to cart!");
+      return navigate('/login');
+    }
     const priceValue = parseInt(product.price.replace("₹", ""));
     addToCart({ name: product.name, image: product.img, price: priceValue, quantity });
     document.querySelector('.add-to-cart-toast').classList.add('show');

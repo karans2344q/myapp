@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,134 +13,122 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { addToCart } = useCart();
 
-  // Flipkart-style slider images (more added)
+  // Flipkart-style banners (keep these for homepage feel)
   const bannerImages = [
-    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80',
+    '/image/slider1.jpg',
+    '/image/slider2.jpg',
+    '/image/slider3.jpg',
+    '/image/slider4.jpg',
   ];
 
-  // Gallery cards (modern look)
+  // Categories: Purani Unsplash waali
   const galleryItems = [
     {
-      img: 'https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=800&q=80",
       title: "Women's Collection",
-      subtitle: 'Elegant styles for every occasion',
-      color: 'linear-gradient(135deg, #FF9E9E 0%, #FF6B6B 100%)',
-      link: '/women',
+      subtitle: "Elegant styles for every occasion",
+      color: "linear-gradient(135deg, #FF9E9E 0%, #FF6B6B 100%)",
+      link: "/women"
     },
     {
-      img: 'https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?auto=format&fit=crop&w=800&q=80",
       title: "Men's Fashion",
-      subtitle: 'Premium quality & modern designs',
-      color: 'linear-gradient(135deg, #A0E7E5 0%, #60C5C2 100%)',
-      link: '/men',
+      subtitle: "Premium quality & modern designs",
+      color: "linear-gradient(135deg, #A0E7E5 0%, #60C5C2 100%)",
+      link: "/men"
     },
     {
-      img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
       title: "Kids' World",
-      subtitle: 'Fun & comfortable outfits',
-      color: 'linear-gradient(135deg, #B5EAEA 0%, #85CACA 100%)',
-      link: '/kids',
+      subtitle: "Fun & comfortable outfits",
+      color: "linear-gradient(135deg, #B5EAEA 0%, #85CACA 100%)",
+      link: "/kids"
     },
-    {
-      img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
-      title: 'Accessories',
-      subtitle: 'Trendy add-ons for every look',
-      color: 'linear-gradient(135deg, #FFD6E0 0%, #FFB6B9 100%)',
-      link: '/accessories',
-    },
+    
   ];
 
-  // Accessories section (modern cards)
+  // Accessories: Tumhari purani images
   const accessories = [
     {
-      img: 'https://tse3.mm.bing.net/th/id/OIP.H3NtQQalXSeD5Lkjl_D6JAHaHa?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=480&q=80",
       name: "Men's Designer Watch",
-      price: '₹2,499',
-      category: 'men',
-      link: '/men',
+      price: "₹2,499",
+      category: "men",
+      link: "/men"
     },
     {
-      img: 'https://homafy.com/wp-content/uploads/2020/05/Customised-leather-wallets-1024x1024.jpg',
+      img: "https://homafy.com/wp-content/uploads/2020/05/Customised-leather-wallets-1024x1024.jpg",
       name: "Men's Leather Wallet",
-      price: '₹1,799',
-      category: 'men',
-      link: '/men',
+      price: "₹1,799",
+      category: "men",
+      link: "/men"
     },
     {
-      img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
-      name: "Women's Silver Dimond Ring",
-      price: '₹3,299',
-      category: 'women',
-      link: '/women',
+      img: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=480&q=80",
+      name: "Women's Silver Diamond Ring",
+      price: "₹3,299",
+      category: "women",
+      link: "/women"
     },
     {
-      img: 'https://m.media-amazon.com/images/I/71tlUBIDk1L._UY1100_.jpg',
+      img: "https://m.media-amazon.com/images/I/71tlUBIDk1L._UY1100_.jpg",
       name: "Women's Silk Scarf",
-      price: '₹1,299',
-      category: 'women',
-      link: '/women',
+      price: "₹1,299",
+      category: "women",
+      link: "/women"
     },
     {
-      img: 'https://staranddaisy.in/wp-content/uploads/2024/03/new-school-bag-for-Kids-Blue-1.jpg',
+      img: "https://staranddaisy.in/wp-content/uploads/2024/03/new-school-bag-for-Kids-Blue-1.jpg",
       name: "Kids' Backpack",
-      price: '₹899',
-      category: 'kids',
-      link: '/kids',
+      price: "₹899",
+      category: "kids",
+      link: "/kids"
     },
     {
-      img: 'https://m.media-amazon.com/images/I/41MAaQxnTsL._UF1000,1000_QL80_.jpg',
+      img: "https://m.media-amazon.com/images/I/41MAaQxnTsL._UF1000,1000_QL80_.jpg",
       name: "Kids' Water Bottle",
-      price: '₹499',
-      category: 'kids',
-      link: '/kids',
+      price: "₹499",
+      category: "kids",
+      link: "/kids"
     },
     {
-      img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
       name: "Trendy Sunglasses",
-      price: '₹1,099',
-      category: 'accessory',
-      link: '/accessories',
+      price: "₹1,099",
+      category: "accessory",
+      link: "/accessories"
     },
     {
-      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
+      img: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80",
       name: "Classic Cap",
-      price: '₹499',
-      category: 'accessory',
-      link: '/accessories',
-    },
+      price: "₹499",
+      category: "accessory",
+      link: "/accessories"
+    }
   ];
-
-  const handleGalleryClick = (link) => {
-    navigate(link);
-  };
-
-  const handleAccessoryClick = (link) => {
-    navigate(link);
-  };
 
   return (
     <div className="home-container">
+      {/* -- HERO -- */}
       <div className="hero-section">
-        <h1 className="hero-title">Flipkart Style Store</h1>
+        <h1 className="hero-title">
+          <span className="brand-accent">Just One Click</span>
+          <span className="brand-moto-text"> – Shopping Made Magical</span>
+        </h1>
         <p className="hero-subtitle">
-          Sabse modern fashion, trending accessories aur family ke liye best deals. Flipkart jaisa experience ab yahan!
+          Welcome to a world of exclusive deals, iconic styles, and trending products.<br />
+          <b>Just One Click</b> se <i>shopping</i> is now fun, easy, and 100% real!
         </p>
         <div className="search-container">
           <div className="search-bar">
             <input
               type="text"
-              placeholder="Search for products, brands, categories..."
+              placeholder="Search your favorites – shoes, mobiles, kurtis, watches…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            <button className="search-btn">
+            <button className="search-btn" tabIndex={-1}>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -151,29 +138,22 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-scroll-target"></div>
-
-      {/* Flipkart-style slider with product cards */}
+      {/* -- SLIDER -- */}
       <div className="slider-container">
         <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
-          pagination={{ clickable: true, el: '.swiper-pagination' }}
-          navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
+          className="mySwiper flipkart-swiper"
         >
-          {bannerImages.map((image, index) => (
-            <SwiperSlide key={index}>
+          {bannerImages.map((img, idx) => (
+            <SwiperSlide key={idx}>
               <div className="slider-content">
-                <img src={image} alt={`Banner ${index + 1}`} className="slider-image" />
-                <div className="slider-overlay"></div>
+                <img src={img} alt={`Banner-${idx+1}`} className="slider-image flipkart-banner" />
+                <div className="flipkart-slider-overlay"></div>
               </div>
             </SwiperSlide>
           ))}
@@ -183,55 +163,66 @@ const Home = () => {
         </Swiper>
       </div>
 
+      {/* -- CATEGORIES -- */}
       <div className="section-header">
         <h2>Shop By Category</h2>
-        <p>Explore our carefully curated collections</p>
+        <p>Explore our handpicked collections for Women, Men, Kids & Accessories.</p>
       </div>
       <div className="gallery-grid">
-        {galleryItems.map((item, index) => (
-          <div className="gallery-card" key={index} onClick={() => handleGalleryClick(item.link)}>
+        {galleryItems.map((item, i) => (
+          <div className="gallery-card" key={i} onClick={() => navigate(item.link)}>
             <div className="card-image-container">
-              <img src={item.img} alt={item.title} className="gallery-image" />
-              <div className="image-overlay" style={{ background: item.color }}></div>
+              <img src={item.img} alt={item.title} className="gallery-image" draggable="false" />
+              <div className="image-overlay" style={{ background: item.color }} />
             </div>
             <div className="card-content">
               <h3>{item.title}</h3>
               <p>{item.subtitle}</p>
-              <button className="explore-btn">
-                Explore Collection
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
+              <button className="explore-btn" tabIndex={-1}>
+                Explore
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
               </button>
             </div>
           </div>
         ))}
       </div>
 
+      {/* -- ACCESSORIES -- */}
       <div className="section-header">
         <h2>Must-Have Accessories</h2>
-        <p>Complete your look with these essentials</p>
+        <p>Smart watches, wallets, sunglasses and more. Upgrade your add-ons today!</p>
       </div>
       <div className="accessories-section">
         <div className="accessories-grid">
           {accessories.map((item, i) => (
-            <div className="accessory-card" key={i} onClick={() => handleAccessoryClick(item.link)}>
+            <div className="accessory-card" key={i} onClick={() => navigate(item.link)}>
               <div className="accessory-image-container">
-                <img src={item.img} alt={item.name} className="accessory-image" />
+                <img src={item.img} alt={item.name} className="accessory-image" draggable="false" />
                 <div className="category-tag">{item.category.toUpperCase()}</div>
                 <button className="quick-view-btn">Quick View</button>
               </div>
               <div className="accessory-info">
                 <h3>{item.name}</h3>
                 <p className="price">{item.price}</p>
-                <button className="add-to-cart-btn" onClick={(e) => {
+                <button className="add-to-cart-btn" onClick={e => {
                   e.stopPropagation();
                   addToCart({
                     name: item.name,
                     price: Number(item.price.replace(/[₹,]/g, '').trim()),
                     img: item.img,
                   });
-                  alert('✅ Added to Cart!');
+                  // Custom glassy toast
+                  const toast = document.createElement('div');
+                  toast.className = 'cart-toast';
+                  toast.innerText = "✅ Added to Cart!";
+                  document.body.appendChild(toast);
+                  setTimeout(() => {
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                      toast.classList.remove('show');
+                      setTimeout(() => document.body.removeChild(toast), 400);
+                    }, 1500);
+                  }, 100);
                 }}>
                   Add to Cart
                 </button>
@@ -240,6 +231,12 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      <footer className="joc-footer">
+        <span>
+          <b>Just One Click</b> &ndash; Har deal, har style, har smile. Made with <span style={{color:'#ff6b6b'}}>♥</span> for shoppers.
+        </span>
+      </footer>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
-import { auth } from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 function Navbar() {
   const { cartCount, setCartItems } = useCart();
@@ -9,9 +10,35 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [userData, setUserData] = useState(null);
 
+  // ✅ Automatically track login/logout with live Firestore data
   useEffect(() => {
-    const storedUser = localStorage.getItem("userData");
-    if (storedUser) setUserData(JSON.parse(storedUser));
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setUserData({ ...data, uid: user.uid });
+          } else {
+            const fallback = {
+              username: user.displayName || "User",
+              email: user.email,
+              uid: user.uid,
+              role: "user"
+            };
+            setUserData(fallback);
+          }
+        } catch (err) {
+          console.error("Error fetching user data:", err);
+        }
+      } else {
+        setUserData(null);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
@@ -22,7 +49,6 @@ function Navbar() {
 
   const handleLogout = async () => {
     await auth.signOut();
-    localStorage.removeItem("userData");
     setUserData(null);
     setCartItems([]);
     alert("Logout successful!");
@@ -49,63 +75,19 @@ function Navbar() {
             <ul className="navbar-nav me-auto">
               {isAdmin ? (
                 <>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/admin/dashboard">
-                      <i className="fas fa-tools me-1"></i>
-                      <span>Dashboard</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/men">
-                      <i className="fas fa-male me-1"></i>
-                      <span>Men</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/women">
-                      <i className="fas fa-female me-1"></i>
-                      <span>Women</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/kids">
-                      <i className="fas fa-child me-1"></i>
-                      <span>Kids</span>
-                    </NavLink>
-                  </li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/admin/dashboard"><i className="fas fa-tools me-1"></i>Dashboard</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/men"><i className="fas fa-male me-1"></i>Men</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/women"><i className="fas fa-female me-1"></i>Women</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/kids"><i className="fas fa-child me-1"></i>Kids</NavLink></li>
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/">
-                      <i className="fas fa-home me-1"></i> <span>Home</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/men">
-                      <i className="fas fa-male me-1"></i> <span>Men</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/women">
-                      <i className="fas fa-female me-1"></i> <span>Women</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/kids">
-                      <i className="fas fa-child me-1"></i> <span>Kids</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/about">
-                      <i className="fas fa-info-circle me-1"></i> <span>About</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/contact">
-                      <i className="fas fa-envelope me-1"></i> <span>Contact</span>
-                    </NavLink>
-                  </li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/"><i className="fas fa-home me-1"></i>Home</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/men"><i className="fas fa-male me-1"></i>Men</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/women"><i className="fas fa-female me-1"></i>Women</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/kids"><i className="fas fa-child me-1"></i>Kids</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/about"><i className="fas fa-info-circle me-1"></i>About</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/contact"><i className="fas fa-envelope me-1"></i>Contact</NavLink></li>
                 </>
               )}
             </ul>
@@ -113,51 +95,30 @@ function Navbar() {
             <ul className="navbar-nav ms-auto align-items-center gap-2">
               {!username && (
                 <>
-                  <li className="nav-item">
-                    <NavLink className="btn modern-btn login-btn" to="/login">
-                      <i className="fas fa-sign-in-alt me-1"></i> <span>Login</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="btn modern-btn register-btn" to="/register">
-                      <i className="fas fa-user-plus me-1"></i> <span>Register</span>
-                    </NavLink>
-                  </li>
+                  <li className="nav-item"><NavLink className="btn modern-btn login-btn" to="/login"><i className="fas fa-sign-in-alt me-1"></i>Login</NavLink></li>
+                  <li className="nav-item"><NavLink className="btn modern-btn register-btn" to="/register"><i className="fas fa-user-plus me-1"></i>Register</NavLink></li>
                 </>
               )}
-
               {!isAdmin && username && (
                 <>
                   <li className="nav-item position-relative">
-                    <NavLink className="nav-link modern-link cart-link" to="/cart">
-                      <i className="fas fa-shopping-cart me-1"></i> <span>Cart</span>
+                    <NavLink className="nav-link modern-link cart-link" to="/cart"><i className="fas fa-shopping-cart me-1"></i>Cart
                       {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link profile-link" to="/profile">
-                      <i className="fas fa-user-circle me-1"></i> <span>{username}</span>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link modern-link" to="/order">
-                      <i className="fas fa-box-open me-1"></i> <span>Orders</span>
-                    </NavLink>
-                  </li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link profile-link" to="/profile"><i className="fas fa-user-circle me-1"></i>{username}</NavLink></li>
+                  <li className="nav-item"><NavLink className="nav-link modern-link" to="/order"><i className="fas fa-box-open me-1"></i>Orders</NavLink></li>
                 </>
               )}
-
               {username && (
-                <li className="nav-item">
-                  <button className="btn modern-btn logout-btn" onClick={handleLogout}>
-                    <i className="fas fa-sign-out-alt me-1"></i> <span>Logout</span>
-                  </button>
-                </li>
+                <li className="nav-item"><button className="btn modern-btn logout-btn" onClick={handleLogout}><i className="fas fa-sign-out-alt me-1"></i>Logout</button></li>
               )}
             </ul>
           </div>
         </div>
       </nav>
+    
+
 
       {/* ✅ Styling */}
       <style jsx>{`
