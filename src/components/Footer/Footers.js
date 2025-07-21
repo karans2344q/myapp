@@ -1,27 +1,25 @@
-import React from 'react';
+// Footer.js
+import React from "react";
+import "./Footer.css";
 
 function Footer() {
-  const footerStyle = {
-    backgroundColor: '#282c34',
-    padding: '20px',
-    color: 'white',
-    textAlign: 'center',
-    marginTop: 'auto',
-    position: 'relative',
-    bottom: 0,
-    width: '100%'
-  };
-
-  const smallStyle = {
-    display: 'block',
-    marginTop: '8px',
-    opacity: '0.8'
-  };
-
   return (
-    <footer style={footerStyle}>
-      <p>&copy; {new Date().getFullYear()} Team Collaboration - Created by Karan, Abhishak, and Manad</p>
-      <small style={smallStyle}>Made with ❤️ using React</small>
+    <footer className="joc-footer-animated">
+      <div className="footer-content">
+        <span className="footer-brand">
+          <span className="footer-logo">Just One Click</span>
+          <span className="brand-dash"> – </span>
+          <span className="brand-slogan">Har deal, har style, har smile.</span>
+        </span>
+        <div className="footer-team">
+          <span>
+            <strong>Created by:</strong> Karan, Abhishak & Manad
+          </span>
+        </div>
+        <div className="footer-made">
+          <span className="footer-heart">♥</span> Made with React • {new Date().getFullYear()}
+        </div>
+      </div>
     </footer>
   );
 }

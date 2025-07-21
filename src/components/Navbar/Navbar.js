@@ -122,18 +122,22 @@ function Navbar() {
 
       {/* ✅ Styling */}
       <style jsx>{`
-        .navbar {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          backdrop-filter: blur(10px);
-          transition: all 0.3s ease-in-out;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .navbar.scrolled {
-          background: rgba(40, 40, 50, 0.95);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
+     .navbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  backdrop-filter: blur(10px);
+  transition: background 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar.scrolled {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+  box-shadow: 0 8px 24px rgba(124, 67, 189, 0.4);
+  border-bottom: 2px solid #764ba2;
+}
+
+
         .navbar-brand {
           font-size: 1.8rem;
           display: flex;

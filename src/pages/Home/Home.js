@@ -232,11 +232,7 @@ const Home = () => {
         </div>
       </div>
 
-      <footer className="joc-footer">
-        <span>
-          <b>Just One Click</b> &ndash; Har deal, har style, har smile. Made with <span style={{color:'#ff6b6b'}}>♥</span> for shoppers.
-        </span>
-      </footer>
+      
     </div>
   );
 };
