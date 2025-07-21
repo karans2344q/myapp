@@ -1,93 +1,120 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import './Home.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
 import { useCart } from '../../context/CartContext';
-
 
 const Home = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const { addToCart } = useCart();
 
+  // Flipkart-style slider images (more added)
   const bannerImages = [
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?...",
-    "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?...",
-    "https://images.unsplash.com/photo-1483985988355-763728e1935b?..."
+    'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80',
   ];
 
+  // Gallery cards (modern look)
   const galleryItems = [
     {
-      img: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?...",
+      img: 'https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=800&q=80',
       title: "Women's Collection",
-      subtitle: "Elegant styles for every occasion",
-      color: "linear-gradient(135deg, #FF9E9E 0%, #FF6B6B 100%)",
-      link: "/women"
+      subtitle: 'Elegant styles for every occasion',
+      color: 'linear-gradient(135deg, #FF9E9E 0%, #FF6B6B 100%)',
+      link: '/women',
     },
     {
-      img: "https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?...",
+      img: 'https://images.unsplash.com/photo-1520367445093-50dc08a59d9d?auto=format&fit=crop&w=800&q=80',
       title: "Men's Fashion",
-      subtitle: "Premium quality & modern designs",
-      color: "linear-gradient(135deg, #A0E7E5 0%, #60C5C2 100%)",
-      link: "/men"
+      subtitle: 'Premium quality & modern designs',
+      color: 'linear-gradient(135deg, #A0E7E5 0%, #60C5C2 100%)',
+      link: '/men',
     },
     {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYp0F...",
+      img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
       title: "Kids' World",
-      subtitle: "Fun & comfortable outfits",
-      color: "linear-gradient(135deg, #B5EAEA 0%, #85CACA 100%)",
-      link: "/kids"
-    }
+      subtitle: 'Fun & comfortable outfits',
+      color: 'linear-gradient(135deg, #B5EAEA 0%, #85CACA 100%)',
+      link: '/kids',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
+      title: 'Accessories',
+      subtitle: 'Trendy add-ons for every look',
+      color: 'linear-gradient(135deg, #FFD6E0 0%, #FFB6B9 100%)',
+      link: '/accessories',
+    },
   ];
 
+  // Accessories section (modern cards)
   const accessories = [
     {
-      img: "https://tse3.mm.bing.net/th/id/OIP.H3NtQQalXSeD5Lkjl_D6JAHaHa?...",
+      img: 'https://tse3.mm.bing.net/th/id/OIP.H3NtQQalXSeD5Lkjl_D6JAHaHa?auto=format&fit=crop&w=800&q=80',
       name: "Men's Designer Watch",
-      price: "₹2,499",
-      category: "men",
-      link: "/men"
+      price: '₹2,499',
+      category: 'men',
+      link: '/men',
     },
     {
-      img: "https://homafy.com/wp-content/uploads/2020/05/Customised-leather-wallets-1024x1024.jpg",
+      img: 'https://homafy.com/wp-content/uploads/2020/05/Customised-leather-wallets-1024x1024.jpg',
       name: "Men's Leather Wallet",
-      price: "₹1,799",
-      category: "men",
-      link: "/men"
+      price: '₹1,799',
+      category: 'men',
+      link: '/men',
     },
     {
-      img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?...",
+      img: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80',
       name: "Women's Silver Dimond Ring",
-      price: "₹3,299",
-      category: "women",
-      link: "/women"
+      price: '₹3,299',
+      category: 'women',
+      link: '/women',
     },
     {
-      img: "https://m.media-amazon.com/images/I/71tlUBIDk1L._UY1100_.jpg",
+      img: 'https://m.media-amazon.com/images/I/71tlUBIDk1L._UY1100_.jpg',
       name: "Women's Silk Scarf",
-      price: "₹1,299",
-      category: "women",
-      link: "/women"
+      price: '₹1,299',
+      category: 'women',
+      link: '/women',
     },
     {
-      img: "https://staranddaisy.in/wp-content/uploads/2024/03/new-school-bag-for-Kids-Blue-1.jpg",
+      img: 'https://staranddaisy.in/wp-content/uploads/2024/03/new-school-bag-for-Kids-Blue-1.jpg',
       name: "Kids' Backpack",
-      price: "₹899",
-      category: "kids",
-      link: "/kids"
+      price: '₹899',
+      category: 'kids',
+      link: '/kids',
     },
     {
-      img: "https://m.media-amazon.com/images/I/41MAaQxnTsL._UF1000,1000_QL80_.jpg",
+      img: 'https://m.media-amazon.com/images/I/41MAaQxnTsL._UF1000,1000_QL80_.jpg',
       name: "Kids' Water Bottle",
-      price: "₹499",
-      category: "kids",
-      link: "/kids"
-    }
+      price: '₹499',
+      category: 'kids',
+      link: '/kids',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',
+      name: "Trendy Sunglasses",
+      price: '₹1,099',
+      category: 'accessory',
+      link: '/accessories',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
+      name: "Classic Cap",
+      price: '₹499',
+      category: 'accessory',
+      link: '/accessories',
+    },
   ];
 
   const handleGalleryClick = (link) => {
@@ -101,9 +128,9 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="hero-section">
-        <h1 className="hero-title">Elevate Your Style</h1>
+        <h1 className="hero-title">Flipkart Style Store</h1>
         <p className="hero-subtitle">
-          Discover premium fashion for the entire family. Curated collections with the season's best looks.
+          Sabse modern fashion, trending accessories aur family ke liye best deals. Flipkart jaisa experience ab yahan!
         </p>
         <div className="search-container">
           <div className="search-bar">
@@ -126,19 +153,21 @@ const Home = () => {
 
       <div className="home-scroll-target"></div>
 
+      {/* Flipkart-style slider with product cards */}
       <div className="slider-container">
         <Swiper
-          spaceBetween={0}
-          centeredSlides={true}
-          effect={'fade'}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
+          spaceBetween={20}
+          slidesPerView={3}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
           pagination={{ clickable: true, el: '.swiper-pagination' }}
           navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }}
-          modules={[Autoplay, EffectFade, Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
         >
           {bannerImages.map((image, index) => (
             <SwiperSlide key={index}>
