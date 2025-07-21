@@ -128,7 +128,15 @@ const Home = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            <button className="search-btn" tabIndex={-1}>
+            <button className="search-btn" tabIndex={-1}></button>
+        <h1 className="hero-title">Just One click. Endless choices.</h1>
+        <p className="hero-subtitle">
+          Discover handpicked fashion, premium accessories, and unique styles for everyone in the family — all in one beautiful place.
+        </p>
+        <div className="search-container">
+          <div className="search-bar">
+            <input type="text" placeholder="Search for products, brands, categories..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
+            <button className="search-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -137,7 +145,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      </div>
+    </div>
       {/* -- SLIDER -- */}
       <div className="slider-container">
         <Swiper
@@ -161,12 +170,15 @@ const Home = () => {
           <div className="swiper-button-next"></div>
           <div className="swiper-button-prev"></div>
         </Swiper>
-      </div>
+    </div>
 
       {/* -- CATEGORIES -- */}
       <div className="section-header">
         <h2>Shop By Category</h2>
         <p>Explore our handpicked collections for Women, Men, Kids & Accessories.</p>
+=======
+        <h2>Browse Our Signature Collections</h2>
+        <p>Finishing touches that define your look</p>
       </div>
       <div className="gallery-grid">
         {galleryItems.map((item, i) => (
