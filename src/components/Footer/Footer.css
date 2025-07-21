@@ -8,8 +8,6 @@
   background: linear-gradient(90deg, #7c43bd 0%, #ff6b6b 100%);
   color: #fff;
   padding: 40px 0 42px 0;
-  border-top-left-radius: 42px;
-  border-top-right-radius: 42px;
   min-height: 120px;
   box-shadow: 0 -2px 40px #7c43bd22, 0 -2px 0 #fff2;
   animation: gradientMove 8s linear infinite alternate;
@@ -69,6 +67,7 @@
   font-size: 1.22rem;
   animation: heartbeat 1.5s infinite;
 }
+
 @keyframes gradientMove {
   0% { background-position: 0 0;}
   100% { background-position: 100% 0;}
@@ -93,11 +92,11 @@
   60% {transform: scale(1.14);}
   80% {transform: scale(1);}
 }
+
 @media (max-width: 700px) {
   .joc-footer-animated {
     padding: 26px 2vw;
     font-size: .96rem;
-    border-radius: 28px 28px 0 0;
     min-height: 75px;
   }
   .footer-logo { font-size: 1.35rem; }

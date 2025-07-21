@@ -13,7 +13,6 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { addToCart } = useCart();
 
-  // Flipkart-style banners (keep these for homepage feel)
   const bannerImages = [
     '/image/slider1.jpg',
     '/image/slider2.jpg',
@@ -21,7 +20,6 @@ const Home = () => {
     '/image/slider4.jpg',
   ];
 
-  // Categories: Purani Unsplash waali
   const galleryItems = [
     {
       img: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=800&q=80",
@@ -43,11 +41,9 @@ const Home = () => {
       subtitle: "Fun & comfortable outfits",
       color: "linear-gradient(135deg, #B5EAEA 0%, #85CACA 100%)",
       link: "/kids"
-    },
-    
+    }
   ];
 
-  // Accessories: Tumhari purani images
   const accessories = [
     {
       img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=480&q=80",
@@ -109,7 +105,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* -- HERO -- */}
       <div className="hero-section">
         <h1 className="hero-title">
           <span className="brand-accent">Just One Click</span>
@@ -128,14 +123,6 @@ const Home = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            <button className="search-btn" tabIndex={-1}></button>
-        <h1 className="hero-title">Just One click. Endless choices.</h1>
-        <p className="hero-subtitle">
-          Discover handpicked fashion, premium accessories, and unique styles for everyone in the family — all in one beautiful place.
-        </p>
-        <div className="search-container">
-          <div className="search-bar">
-            <input type="text" placeholder="Search for products, brands, categories..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
             <button className="search-btn">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -145,9 +132,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      </div>
-    </div>
-      {/* -- SLIDER -- */}
+
       <div className="slider-container">
         <Swiper
           slidesPerView={1}
@@ -166,19 +151,12 @@ const Home = () => {
               </div>
             </SwiperSlide>
           ))}
-          <div className="swiper-pagination"></div>
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
         </Swiper>
-    </div>
+      </div>
 
-      {/* -- CATEGORIES -- */}
       <div className="section-header">
         <h2>Shop By Category</h2>
         <p>Explore our handpicked collections for Women, Men, Kids & Accessories.</p>
-=======
-        <h2>Browse Our Signature Collections</h2>
-        <p>Finishing touches that define your look</p>
       </div>
       <div className="gallery-grid">
         {galleryItems.map((item, i) => (
@@ -199,7 +177,6 @@ const Home = () => {
         ))}
       </div>
 
-      {/* -- ACCESSORIES -- */}
       <div className="section-header">
         <h2>Must-Have Accessories</h2>
         <p>Smart watches, wallets, sunglasses and more. Upgrade your add-ons today!</p>
@@ -223,7 +200,6 @@ const Home = () => {
                     price: Number(item.price.replace(/[₹,]/g, '').trim()),
                     img: item.img,
                   });
-                  // Custom glassy toast
                   const toast = document.createElement('div');
                   toast.className = 'cart-toast';
                   toast.innerText = "✅ Added to Cart!";
@@ -243,8 +219,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
-      
     </div>
   );
 };
