@@ -16,6 +16,7 @@
   font-family: 'Inter', sans-serif;
   position: relative;
   overflow: hidden;
+  border-radius: 18px; 
 }
 
 .joc-contact-page::before {

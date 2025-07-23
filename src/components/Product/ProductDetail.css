@@ -5,6 +5,7 @@
   min-height: 100vh;
   padding: 2rem 1rem;
   color: #222;
+  border-radius: 18px; 
 }
 
 .product-detail-container {

@@ -61,7 +61,7 @@ function Navbar() {
   return (
     <>
       <nav className={`navbar navbar-expand-lg navbar-dark sticky-top py-2 ${scrolled ? 'scrolled' : ''}`}>
-        <div className="container">
+        <div className="container-fluid px-4">
           <NavLink className="navbar-brand fw-bold fs-4 d-flex align-items-center brand-hover" to="/">
             <i className="fas fa-shopping-bag me-2 brand-icon"></i>
             <span className="brand-text">MYSHOP</span>

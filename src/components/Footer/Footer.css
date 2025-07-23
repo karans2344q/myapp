@@ -1,25 +1,49 @@
-/* Footer.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap');
 
+/* Layout fix */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Footer Styles */
 .joc-footer-animated {
   width: 100%;
-  margin-top: 90px;
   font-family: 'Inter', sans-serif;
   background: linear-gradient(90deg, #7c43bd 0%, #ff6b6b 100%);
   color: #fff;
-  padding: 40px 0 42px 0;
+  padding: 40px 0 42px;
   min-height: 120px;
   box-shadow: 0 -2px 40px #7c43bd22, 0 -2px 0 #fff2;
   animation: gradientMove 8s linear infinite alternate;
   position: relative;
   z-index: 5;
+
+  /* Flipkart-style subtle corners */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
+
 .footer-content {
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
   animation: fadeInUp 1.15s cubic-bezier(.18,.85,.48,1.06);
 }
+
 .footer-brand {
   font-size: 1.63rem;
   font-weight: 800;
@@ -27,6 +51,7 @@
   letter-spacing: 1.05px;
   margin-bottom: 8px;
 }
+
 .footer-logo {
   font-size: 2.05rem;
   font-weight: 900;
@@ -35,22 +60,26 @@
   -webkit-text-fill-color: transparent;
   animation: shineText 3s infinite linear;
 }
+
 .brand-dash {
   font-weight: 700;
   margin: 0 8px;
   color: #ffe164;
 }
+
 .brand-slogan {
   font-size: 1.1rem;
   font-weight: 500;
   color: #ffe164;
 }
+
 .footer-team {
   margin-top: 9px;
   font-size: 1.02rem;
   opacity: .88;
   animation: fadeInUp 1.5s cubic-bezier(.19,.7,.43,1.13);
 }
+
 .footer-made {
   margin-top: 9px;
   font-size: 1.02rem;
@@ -62,42 +91,49 @@
   letter-spacing: 0.5px;
   animation: fadeIn 1.9s cubic-bezier(.26,.71,.44,1.18);
 }
+
 .footer-heart {
   color: #ff6b6b;
   font-size: 1.22rem;
   animation: heartbeat 1.5s infinite;
 }
 
+/* Animations */
 @keyframes gradientMove {
-  0% { background-position: 0 0;}
-  100% { background-position: 100% 0;}
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 0; }
 }
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(38px);}
-  to   { opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(38px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes fadeIn {
-  from {opacity:0;}
-  to   {opacity:1;}
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 @keyframes shineText {
-  0% { filter: brightness(1.07);}
-  50% { filter: brightness(1.25);}
-  100% { filter: brightness(1.07);}
+  0% { filter: brightness(1.07); }
+  50% { filter: brightness(1.25); }
+  100% { filter: brightness(1.07); }
 }
 @keyframes heartbeat {
-  0%, 100% {transform: scale(1);}
-  20% {transform: scale(1.28);}
-  40% {transform: scale(1);}
-  60% {transform: scale(1.14);}
-  80% {transform: scale(1);}
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.28); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.14); }
+  80% { transform: scale(1); }
 }
 
+/* Responsive */
 @media (max-width: 700px) {
   .joc-footer-animated {
     padding: 26px 2vw;
-    font-size: .96rem;
+    font-size: 0.96rem;
     min-height: 75px;
+
+    /* Smaller rounding for mobile */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
   .footer-logo { font-size: 1.35rem; }
   .footer-brand { font-size: 1.09rem; }
