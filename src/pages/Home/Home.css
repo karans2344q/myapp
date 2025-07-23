@@ -65,44 +65,69 @@ body, #root {
 
 /* Modern Search Bar */
 .search-container {
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  max-width: 400px;
+  margin: 2rem auto 0 auto;
+  display: flex;
+  justify-content: flex-end;
   animation: fadeInUp 0.91s cubic-bezier(.17,.87,.5,1.23) 0.27s both;
+  z-index: 1;
 }
+
 .search-bar {
   display: flex;
-  border-radius: 38px;
+  align-items: center;
+  border-radius: 999px;
   overflow: hidden;
-  box-shadow: 0 10px 34px #7c43bd14;
+  box-shadow: 0 10px 34px rgba(124, 67, 189, 0.1);
   transition: box-shadow 0.25s;
-  background: var(--lighter);
+  background: #fff;
   border: 1.6px solid #edeefd;
+  width: 100%;
+  max-width: 360px;
 }
+
 .search-bar:focus-within {
-  box-shadow: 0 11px 30px #7c43bd28;
-  border-color: var(--primary);
+  box-shadow: 0 11px 30px rgba(124, 67, 189, 0.15);
+  border-color: #7c43bd;
 }
+
 .search-input {
   flex: 1;
-  padding: 18px 28px;
-  border: none; background: transparent;
-  font-size: 1.04rem;
-  color: var(--dark);
+  padding: 16px 20px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #2d3748;
 }
-.search-input:focus { outline: none; }
-.search-input::placeholder { color: #a0aec0; }
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #a0aec0;
+}
+
 .search-btn {
-  width: 63px; background: var(--primary);
+  width: 52px;
+  height: 52px;
+  background: #7c43bd;
   color: #fff;
   border: none;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.25s;
-  font-size: 1.12rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  margin-right: 5px;
 }
-.search-btn:hover { background: var(--primary-dark); }
+
+.search-btn:hover {
+  background: #5e32a5;
+}
+
 
 /* ---- Flipkart-Style Banner Slider ---- */
 .slider-container {
@@ -368,13 +393,13 @@ body, #root {
   margin-bottom: 7px;
 }
 .price {
-  font-size: 1.22rem; font-weight: 800; color: #3aa655;
+  font-size: 1.22rem; font-weight: 800; color: #3aa655 !important;
   margin-bottom: 14px;
 }
 .add-to-cart-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(90deg, #1e3c72, #2a5298 80%);
+  background: linear-gradient(90deg, #1e3c72, #2a5298 80% )!important;
   color: #fff;
   border: none; border-radius: 8px;
   font-weight: 700; font-size: 1.02rem;

@@ -13,7 +13,7 @@ function Footer() {
         </span>
         <div className="footer-team">
           <span>
-            <strong>Created by:</strong> Karan, Abhishak & Manad
+            <strong>Created by:</strong> Karan, Manad & Abhsihek
           </span>
         </div>
         <div className="footer-made">
