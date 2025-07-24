@@ -1,104 +1,40 @@
+:root {
+  --primary: #7c43bd;
+  --primary-dark: #5e32a5;
+  --accent: #ff6b6b;
+  --light: #f8f9fa;
+  --gray: #718096;
+}
+
 /* Main Section */
 .kids-section {
   padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #e2faa7, #f9f6ff);
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8faff, #e9eafc 100%);
+  font-family: 'Inter', Arial, sans-serif;
   min-height: 100vh;
   box-sizing: border-box;
-  border-radius: 18px; 
+  border-radius: 18px;
 }
 
 /* Heading */
 .kids-section h1 {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(to right, #ff6b6b, #7c43bd);
+  background: linear-gradient(to right, #7c43bd, #ff6b6b);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 40px;
   text-align: center;
   animation: fadeIn 1s ease;
-}
-
-/* Header */
-.kids-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.kids-header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  background: linear-gradient(to right, #1e3c72, #2a5298);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 12px;
-  animation: fadeIn 1s ease;
-}
-
-.kids-header p {
-  color: #6c757d;
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-/* Filters */
-.filters-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.filter-group label {
-  font-weight: 700;
-  color: #34495e;
-  font-size: 1rem;
-}
-
-.filter-select, .filter-group input {
-  padding: 12px 15px;
-  border-radius: 12px;
-  border: 2px solid #dcdde1;
-  background: #fff;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.filter-select:hover, .filter-group input:hover {
-  border-color: #3498db;
-  box-shadow: 0 6px 12px rgba(52, 152, 219, 0.15);
-}
-
-.clear-button {
-  padding: 12px 25px;
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
-  border: none;
-  border-radius: 50px;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
-}
-
-.clear-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(255, 65, 108, 0.5);
 }
 
 /* Gallery */
 .kids-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 25px;
   padding: 10px;
 }
@@ -109,7 +45,7 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px #7c43bd18;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -118,14 +54,14 @@
 
 .kids-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 30px #7c43bd33;
 }
 
 /* Image */
 .card-image-container {
   width: 100%;
   height: 240px;
-  background: #f5f6fa;
+  background: #f8faff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,7 +92,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
-  color: #2d3436;
+  color: var(--primary-dark);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -165,12 +101,13 @@
 .kids-price {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #3aa655;
+  color: #03960c;
+  margin-bottom: 8px;
 }
 
 .rating-line {
   font-size: 1rem;
-  color: #444;
+  color: var(--gray);
 }
 
 .rating-line b {
@@ -180,8 +117,8 @@
 /* Button */
 .cart-btn {
   width: 100%;
-  background: linear-gradient(to right, #1e3c72, #2a5298);
-  color: white;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: #fff;
   border: none;
   padding: 14px;
   border-radius: 12px;
@@ -193,7 +130,8 @@
 }
 
 .cart-btn:hover {
-  background: linear-gradient(to right, #16325c, #1e3c72);
+  background: linear-gradient(to right, #edeefd, var(--primary));
+  color: var(--primary-dark);
   transform: translateY(-4px);
 }
 
@@ -202,7 +140,7 @@
   text-align: center;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #e74c3c;
+  color: var(--accent);
   margin-top: 30px;
 }
 
@@ -214,7 +152,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .kids-header h1 {
+  .kids-section h1 {
     font-size: 2.3rem;
   }
   .kids-gallery {
@@ -229,7 +167,7 @@
   .kids-section {
     padding: 30px 12px;
   }
-  .kids-header h1 {
+  .kids-section h1 {
     font-size: 1.8rem;
     margin-bottom: 20px;
   }
@@ -238,6 +176,6 @@
     gap: 14px;
   }
   .card-image-container {
-    height: 180px;
+    height: 150px;
   }
 }

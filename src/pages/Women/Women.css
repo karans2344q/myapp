@@ -3,77 +3,77 @@
   padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #fce3ff, #f9f6ff);
-  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8faff, #e9eafc 100%);
+  font-family: 'Inter', Arial, sans-serif;
   min-height: 100vh;
   box-sizing: border-box;
-  border-radius: 18px; 
+  border-radius: 18px;
 }
 
 /* Heading */
 .women-section h1 {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(to right, #ff6b6b, #7c43bd);
+  background: linear-gradient(to right, #7c43bd, #ff6b6b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 40px;
   text-align: center;
   animation: fadeIn 1s ease;
 }
 
-/* Gallery */
+/* Gallery Grid */
 .women-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 25px;
   padding: 10px;
 }
 
-/* Card */
+/* Card Styling */
 .women-card {
   background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.12);
   overflow: hidden;
+  box-shadow: 0 10px 25px #7c43bd18;
+  transition: transform 0.4s, box-shadow 0.4s;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer;
 }
 
 .women-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 14px 32px rgba(255, 105, 180, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px #7c43bd33;
 }
 
-/* Image */
+/* Product Image */
 .women-img {
   width: 100%;
-  height: 250px;
+  height: 240px;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
 .women-card:hover .women-img {
-  transform: scale(1.08);
+  transform: scale(1.07);
 }
 
-/* Details */
+/* Product Details */
 .women-details {
-  padding: 18px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  flex-grow: 1;
 }
 
 .women-details h3 {
   font-size: 1.2rem;
   font-weight: 700;
-  margin: 0;
-  color: #4a148c;
+  margin-bottom: 8px;
+  color: #5e32a5;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -82,81 +82,57 @@
 .women-price {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #3aa655;
-}
-
-/* Rating */
-.rating-line {
-  font-size: 1rem;
-  color: #444;
-  margin: 10px 0;
-}
-
-.rating-line b {
-  color: #ffb400;
+  color: #03960c;
+  margin-bottom: 12px;
 }
 
 /* Button */
 .cart-btn {
   width: 100%;
-  background: linear-gradient(to right, #ff6b6b, #9c64d4);
-  color: white;
+  background: linear-gradient(to right, #7c43bd, #5e32a5);
+  color: #fff;
+  font-weight: 700;
   border: none;
   padding: 14px;
   border-radius: 12px;
   font-size: 1rem;
-  font-weight: 700;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
+  margin-top: auto;
+  transition: background 0.3s ease, transform 0.3s;
 }
 
 .cart-btn:hover {
-  background: linear-gradient(to right, #ff4b4b, #7c43bd);
+  background: linear-gradient(to right, #edeefd, #7c43bd);
+  color: #5e32a5;
   transform: translateY(-4px);
 }
 
-/* Fade Animation */
+/* Animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Styling */
-@media (max-width: 992px) {
-  .women-section h1 {
-    font-size: 2.5rem;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   .women-section h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   .women-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-  .women-img {
-    height: 200px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
   .women-section {
-    padding: 20px 12px;
+    padding: 20px 10px;
   }
   .women-section h1 {
-    font-size: 1.7rem;
-    margin-bottom: 25px;
+    font-size: 1.8rem;
   }
   .women-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
   .women-img {
     height: 180px;
