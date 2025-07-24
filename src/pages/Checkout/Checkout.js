@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./Checkout.css";
 
 const Checkout = () => {
-  const { cartItems, cartCount } = useCart();
+  const { cartItems } = useCart(); // cartCount ko hata diya
   const location = useLocation();
   const navigate = useNavigate();
 
